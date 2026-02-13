@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>valontine 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Fredoka:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffd6e8 0%, #ffe0f0 30%, #e8d4ff 70%, #ffd9f2 100%);
+            color: #6b3a5e;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '💕';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '💖';
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 2.5rem;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 250, 0.95) 100%);
+            border: 3px solid #ff9dcd;
+            border-radius: 30px;
+            box-shadow:
+                0 10px 50px rgba(255, 105, 180, 0.3),
+                inset 0 0 30px rgba(255, 192, 203, 0.2);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        .container::before {
+            content: '💗';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes wobble {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: scale(0.95) rotate(-5deg);
+            }
+
+            50% {
+                transform: scale(0.9) rotate(5deg);
+            }
+
+            75% {
+                transform: scale(0.95) rotate(-3deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff85d1 50%, #da70d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 10px rgba(255, 105, 180, 0.3));
+        }
+
+        h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ff6ba9;
+        }
+
+        p,
+        .subtitle {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #9b6b9e;
+        }
+
+        .question-text {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #c44d9f;
+            line-height: 1.4;
+        }
+
+        button {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff85d1 50%, #da70d6 100%);
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.6);
+        }
+
+        .btn-primary::before {
+            content: '💖 ';
+        }
+
+        .btn-primary::after {
+            content: ' 💖';
+        }
+
+        .answer-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-answer {
+            background: linear-gradient(135deg, rgba(255, 240, 250, 0.8) 0%, rgba(255, 230, 245, 0.9) 100%);
+            color: #c44d9f;
+            border: 2px solid #ffb3d9;
+            transition: all 0.3s ease;
+        }
+
+        .btn-answer:hover {
+            background: linear-gradient(135deg, #ffe0f0 0%, #ffd6e8 100%);
+            border-color: #ff85d1;
+            transform: translateX(5px) scale(1.03);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .error-message {
+            display: none;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            color: #ff6ba9;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .success-message {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            color: #c44d9f;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 700;
+        }
+
+        .gif-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .gif-container img {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .final-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 80px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff85d1 50%, #da70d6 100%);
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 20px 60px;
+            box-shadow: 0 5px 30px rgba(255, 105, 180, 0.5);
+            border: 3px solid #fff;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.15) rotate(-2deg);
+            box-shadow: 0 8px 40px rgba(255, 105, 180, 0.7);
+        }
+
+        .btn-yes::before {
+            content: '💕 ';
+        }
+
+        .btn-yes::after {
+            content: ' 💕';
+        }
+
+        .btn-no {
+            background: rgba(255, 182, 193, 0.3);
+            color: #ff6ba9;
+            font-size: 1rem;
+            padding: 12px 30px;
+            border: 2px solid #ffb3d9;
+            transition: none;
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .final-message {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 30px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff85d1 50%, #da70d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 10px rgba(255, 105, 180, 0.4));
+        }
+
+        .final-message::before {
+            content: '💖 ';
+        }
+
+        .final-message::after {
+            content: ' 💖';
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+
+            .btn-yes {
+                font-size: 1.2rem;
+                padding: 15px 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="mainContainer">
+        <!-- Step 1: Landing Page -->
+        <div class="screen active" id="screen1">
+            <h1>Hello love... i mean twin</h1>
+            <h2>I have a proposal for u :3</h2>
+            <p class="subtitle">but first u gotta answer some questions to see if u know me well enough </p>
+            <button class="btn-primary" onclick="startMission()">okiee ready?</button>
+        </div>
+
+        <!-- Step 2: Question 1 -->
+        <div class="screen" id="screen2">
+            <p class="question-text">Question 1/3: What is OUR favorite video game to play together? (please bare this
+                cringe)</p>
+            <div class="answer-buttons">
+                <button class="btn-answer" onclick="checkAnswer(1, 'A')">A) Cyberpunk</button>
+                <button class="btn-answer" onclick="checkAnswer(1, 'B')">B) Valorant</button>
+                <button class="btn-answer" onclick="checkAnswer(1, 'C')">C) Minecraft</button>
+            </div>
+            <div class="error-message" id="error1">🎯 stoopid! Try again.</div>
+        </div>
+
+        <!-- Step 3: Question 2 -->
+        <div class="screen" id="screen3">
+            <div class="success-message">✨ Good job!! ✨</div>
+            <p class="question-text">Question 2/3: Who is MY favorite Valorant agent to play?</p>
+            <div class="answer-buttons">
+                <button class="btn-answer" onclick="checkAnswer(2, 'A')">A) Reyna</button>
+                <button class="btn-answer" onclick="checkAnswer(2, 'B')">B) Gekko</button>
+                <button class="btn-answer" onclick="checkAnswer(2, 'C')">C) Sage</button>
+            </div>
+            <div class="error-message" id="error2">🎯 stoopid! Try again.</div>
+        </div>
+
+        <!-- Step 4: Question 3 -->
+        <div class="screen" id="screen4">
+            <div class="success-message">✨ Almost!!! ✨</div>
+            <p class="question-text">Question 3/3: What is my absolute favorite map?</p>
+            <div class="answer-buttons">
+                <button class="btn-answer" onclick="checkAnswer(3, 'A')">A) Sunset</button>
+                <button class="btn-answer" onclick="checkAnswer(3, 'B')">B) Split</button>
+                <button class="btn-answer" onclick="checkAnswer(3, 'C')">C) Breeze</button>
+            </div>
+            <div class="error-message" id="error3">🎯 stoopid! Try again.</div>
+        </div>
+
+        <!-- Step 5: Final Proposal -->
+        <div class="screen" id="screen5">
+            <div class="success-message" id="successMessage">🎊 Yaaaaay YOU've got it all right!!🎊</div>
+            <h1 style="margin-top: 30px;" id="proposalHeading">ANSWERING THESE QUESTIONS DOESNT MAKE U SMART BTW U ARE
+                STILL STOOPID... anywayyyy</h1>
+            <div class="gif-container" id="gifContainer">
+                <img src="https://media1.tenor.com/m/qzUaFqmSdlQAAAAC/scums-wish-hop-on-valorant.gif"
+                    alt="Cute Valorant GIF">
+            </div>
+            <p class="question-text" id="proposalQuestion">Would u like to spend this ass day playing
+                valorant with me? :3</p>
+            <div class="final-buttons" id="finalButtons">
+                <button class="btn-yes" onclick="sayYes()">YES</button>
+            </div>
+            <div class="final-message" id="finalMessage" style="display: none;">yaayyy i lobe you so much &lt;3</div>
+        </div>
+    </div>
+
+    <button class="btn-no" id="noButton" onclick="handleNoClick()"
+        style="display: none; position: fixed; z-index: 10000;">NO</button>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        // Correct answers
+        const answers = {
+            1: 'B',
+            2: 'A',
+            3: 'C'
+        };
+
+        function startMission() {
+            showScreen(2);
+        }
+
+        function showScreen(screenNumber) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => screen.classList.remove('active'));
+            document.getElementById('screen' + screenNumber).classList.add('active');
+
+            // Show NO button when reaching the proposal screen
+            const noButton = document.getElementById('noButton');
+            if (screenNumber === 5) {
+                noButton.style.display = 'block';
+                // Position it next to the YES button area
+                const yesBtn = document.querySelector('.btn-yes');
+                const yesRect = yesBtn.getBoundingClientRect();
+                noButton.style.left = (yesRect.right + 20) + 'px';
+                noButton.style.top = (yesRect.top + 10) + 'px';
+            } else {
+                noButton.style.display = 'none';
+            }
+        }
+
+        function checkAnswer(questionNumber, selectedAnswer) {
+            const container = document.getElementById('mainContainer');
+            const errorMessage = document.getElementById('error' + questionNumber);
+
+            if (selectedAnswer === answers[questionNumber]) {
+                // Correct answer - move to next screen
+                errorMessage.classList.remove('show');
+                setTimeout(() => {
+                    showScreen(questionNumber + 2);
+                }, 500);
+            } else {
+                // Wrong answer - shake and show error
+                container.classList.add('shake');
+                errorMessage.classList.add('show');
+
+                setTimeout(() => {
+                    container.classList.remove('shake');
+                }, 300);
+
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        let noButtonClicks = 0;
+
+        function handleNoClick() {
+            noButtonClicks++;
+            const noButton = document.getElementById('noButton');
+
+            // After 5 clicks, show alternative message
+            if (noButtonClicks >= 5) {
+                const finalMessage = document.getElementById('finalMessage');
+
+                // Hide all the proposal content
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('proposalHeading').style.display = 'none';
+                document.getElementById('gifContainer').style.display = 'none';
+                document.getElementById('proposalQuestion').style.display = 'none';
+                document.getElementById('finalButtons').style.display = 'none';
+                noButton.style.display = 'none';
+
+                // Show rejection message
+                finalMessage.innerHTML = '💔 bruhh enjoy solo queing then💔';
+                finalMessage.style.display = 'block';
+                return;
+            }
+
+            // Move to a random visible spot on screen
+            const btnWidth = noButton.offsetWidth;
+            const btnHeight = noButton.offsetHeight;
+            const maxX = window.innerWidth - btnWidth - 20;
+            const maxY = window.innerHeight - btnHeight - 20;
+            const randomX = 20 + Math.random() * maxX;
+            const randomY = 20 + Math.random() * maxY;
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+        }
+
+        function sayYes() {
+            // Hide buttons
+            document.getElementById('finalButtons').style.display = 'none';
+
+            // Show final message
+            document.getElementById('finalMessage').style.display = 'block';
+
+            // Create confetti explosion
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            const colors = ['#ff69b4', '#ff85d1', '#ffb3d9', '#da70d6', '#ffc0cb', '#ffb6c1'];
+
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+                    confettiContainer.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 20);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
